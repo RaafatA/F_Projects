@@ -83,7 +83,7 @@ mapper.pl SRR1234567_trimmed.fastq -e -h -m -j -l 18 -s reads_collapsed.fa -t re
 #############################
 # miRDeep2.pl takes the collapsed reads, the genome, mapping file, and the miRBase references.
 # Note: the second parameter for mature sequences is repeated – this allows using the same file for both known and candidate quantification.
-miRDeep2.pl reads_collapsed.fa Homo_sapiens.GRCh38.dna.primary_assembly.fa reads_vs_genome.arf hsa.mature.fa hsa.mature.fa hsa.hairpin.fa -t hsa
+miRDeep2.pl reads_collapsed.fa Homo_sapiens.GRCh38.dna.primary_assembly.fa reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
 
 # The output directory will contain files including:
 #   - HTML reports with predicted miRNAs and their scores
