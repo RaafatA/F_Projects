@@ -76,7 +76,7 @@ grep -A1 '^>hsa-' hairpin.fa > hsa.hairpin.fa
 #   -s : output file for collapsed reads
 #   -t : output mapping results in .arf format (needed by miRDeep2.pl)
 #   -p : prefix of the Bowtie index built earlier
-mapper.pl SRR1234567_trimmed.fastq -e -d -h -m -j -l 18 -s reads_collapsed.fa -t reads_vs_genome.arf -p hg38_index
+mapper.pl SRR1234567_trimmed.fastq -e -d -h -m -j -l 18 -s SRR1234567_reads_collapsed.fa -t SRR1234567_reads_vs_genome.arf -p hg38_index
 
 #############################
 # 7. Run miRDeep2 for miRNA quantification and discovery
