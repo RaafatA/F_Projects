@@ -76,10 +76,10 @@ grep -A1 '^>hsa-' hairpin.fa > hsa.hairpin.fa
 #   -s : output file for collapsed reads
 #   -t : output mapping results in .arf format (needed by miRDeep2.pl)
 #   -p : prefix of the Bowtie index built earlier
-mapper.pl trim_SRR6757373.fastq -e -d -h -m -j -l 18 -s SRR6757373_reads_collapsed.fa -t SRR6757373_reads_vs_genome.arf -p hg38_index
-mapper.pl trim_SRR6757374.fastq -e -d -h -m -j -l 18 -s SRR6757374_reads_collapsed.fa -t SRR6757374_reads_vs_genome.arf -p hg38_index
-mapper.pl trim_SRR6757377.fastq -e -d -h -m -j -l 18 -s SRR6757377_reads_collapsed.fa -t SRR6757377_reads_vs_genome.arf -p hg38_index
-mapper.pl trim_SRR6757378.fastq -e -d -h -m -j -l 18 -s SRR6757378_reads_collapsed.fa -t SRR6757378_reads_vs_genome.arf -p hg38_index
+mapper.pl trim_SRR6757374.fastq -e -h -m -j -l 18 -s SRR6757374_reads_collapsed.fa -t SRR6757374_reads_vs_genome.arf -p hg38_index
+mapper.pl trim_SRR6757373.fastq -e -h -m -j -l 18 -s SRR6757373_reads_collapsed.fa -t SRR6757373_reads_vs_genome.arf -p hg38_index
+mapper.pl trim_SRR6757377.fastq -e -h -m -j -l 18 -s SRR6757377_reads_collapsed.fa -t SRR6757377_reads_vs_genome.arf -p hg38_index
+mapper.pl trim_SRR6757378.fastq -e -h -m -j -l 18 -s SRR6757378_reads_collapsed.fa -t SRR6757378_reads_vs_genome.arf -p hg38_index
 
 #############################
 # 7. Run miRDeep2 for miRNA quantification and discovery
