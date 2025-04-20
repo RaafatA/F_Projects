@@ -87,10 +87,20 @@ mapper.pl trim_SRR6757378.fastq -e -h -m -j -l 18 -s SRR6757378_reads_collapsed.
 # miRDeep2.pl takes the collapsed reads, the genome, mapping file, and the miRBase references.
 # Note: the second parameter for mature sequences is repeated – this allows using the same file for both known and candidate quantification.
 awk '{print $1}' Homo_sapiens.GRCh38.ncrna.fa> one_column_genome.fa
-miRDeep2.pl SRR6757373_reads_collapsed.fa one_column_ref.fa SRR6757373_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t has
+
+# for white spaces error we use this commmand
+awk '{print $1}' hsa.mature.fa> one_column_hsa.mature.fa
+awk '{print $1}' hsa.hairpin.fa> one_column_hsa.hairpin.fa
+
+fastaparse.pl one_column_hsa.mature.fa -b > one_column_hsa.mature.clean.fa
+fastaparse.pl one_column_hsa.hairpin.fa -b > one_column_hsa.hairpin.clean.fa
+
+miRDeep2.pl Alignment/SRR6757373_reads_collapsed.fa one_column_genome.fa Alignment/SRR6757373_reads_vs_genome.arf one_column_hsa.mature.clean.fa one_column_hsa.hairpin.clean.fa none -t hsa
+
 miRDeep2.pl SRR6757374_reads_collapsed.fa one_column_ref.fa SRR6757374_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
 miRDeep2.pl SRR6757377_reads_collapsed.fa one_column_ref.fa SRR6757377_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
 miRDeep2.pl SRR6757378_reads_collapsed.fa one_column_ref.fa SRR6757378_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
+
 
 
 # The output directory will contain files including:
