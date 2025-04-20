@@ -53,8 +53,8 @@ bowtie-build Homo_sapiens.GRCh38.dna.primary_assembly.fa hg38_index
 # 5. Download miRBase reference sequences for known miRNAs
 #############################
 # For quantifying known miRNAs, you need the mature and hairpin sequences.
-wget ftp://mirbase.org/pub/mirbase/CURRENT/mature.fa.gz
-wget ftp://mirbase.org/pub/mirbase/CURRENT/hairpin.fa.gz
+wget https://www.mirbase.org/download/mature.fa
+wget https://www.mirbase.org/download/hairpin.fa
 gunzip mature.fa.gz
 gunzip hairpin.fa.gz
 
@@ -86,7 +86,7 @@ mapper.pl trim_SRR6757378.fastq -e -h -m -j -l 18 -s SRR6757378_reads_collapsed.
 #############################
 # miRDeep2.pl takes the collapsed reads, the genome, mapping file, and the miRBase references.
 # Note: the second parameter for mature sequences is repeated – this allows using the same file for both known and candidate quantification.
-awk '{print $1} Homosepines > one_column_genome.fa'
+awk '{print $1}' Homo_sapiens.GRCh38.ncrna.fa> one_column_genome.fa
 miRDeep2.pl SRR6757373_reads_collapsed.fa one_column_ref.fa SRR6757373_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t has
 miRDeep2.pl SRR6757374_reads_collapsed.fa one_column_ref.fa SRR6757374_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
 miRDeep2.pl SRR6757377_reads_collapsed.fa one_column_ref.fa SRR6757377_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
