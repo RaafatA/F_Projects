@@ -111,6 +111,17 @@ awk '{print $1}' hsa.hairpin.fa> one_column_hsa.hairpin.fa
 fastaparse.pl one_column_hsa.mature.fa -b > one_column_hsa.mature.clean.fa
 fastaparse.pl one_column_hsa.hairpin.fa -b > one_column_hsa.hairpin.clean.fa
 
+
+for fa in Alignment/*_reads_collapsed.fa; do  
+	sample_id ="${fa%%_reads_collapsed.fa}"  
+	echo "Processing ${sample_id} File"  
+	collapsed_file= "${sample_id}_reads_collapsed.fa"
+	Alignment_file= "${sample_id}_reads_vs_genome.arf"
+	miRDeep2.pl "$collapsed_file" one_column_genome.fa "$Alignment_file" one_column_hsa.mature.clean.fa one_column_hsa.hairpin.clean.fa none -t hsa
+	echo "the step ends here, the ${sample_id}"
+done
+
+
 miRDeep2.pl Alignment/SRR6757373_reads_collapsed.fa one_column_genome.fa Alignment/SRR6757373_reads_vs_genome.arf one_column_hsa.mature.clean.fa one_column_hsa.hairpin.clean.fa none -t hsa
 
 miRDeep2.pl SRR6757374_reads_collapsed.fa one_column_ref.fa SRR6757374_reads_vs_genome.arf hsa.mature.fa hsa.hairpin.fa -t hsa
