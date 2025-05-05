@@ -110,7 +110,7 @@ This approach is recommended in the DESeq2 vignette and by the community for pro
 
 ---
 
-## 3. Recommended placement in your script
+## Recommended 
 
 1. **After** you create `count_matrix` (end of step 8) and define **colData**, **insert or update**:
 
