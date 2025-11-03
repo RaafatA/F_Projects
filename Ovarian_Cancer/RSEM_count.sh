@@ -4,7 +4,7 @@ REF="/home/2375894/radwa-scratch/GEO_GTEx/refrence"
 OUTDIR="/home/2375894/radwa-scratch/GEO_GTEx/rsem_results"
 THREADS=8
 
-# Enable recursive globbing (in case you want to merge later)
+# Enable recursive globbing
 shopt -s nullglob
 
 for STUDY in /home/2375894/radwa-scratch/GEO_GTEx/mapped_GSE*/; do
@@ -13,10 +13,11 @@ for STUDY in /home/2375894/radwa-scratch/GEO_GTEx/mapped_GSE*/; do
 
   echo "========== Processing Study: $STUDYNAME =========="
 
-  for BAM in "$STUDY"/*.bam; do
+  # Match STAR coordinate-sorted BAMs
+  for BAM in "$STUDY"/*_Aligned.sortedByCoord.out.bam; do
     [ -e "$BAM" ] || { echo "No BAM files in $STUDYNAME"; continue; }
 
-    SAMPLE=$(basename "$BAM" .Aligned.toTranscriptome.out.bam)
+    SAMPLE=$(basename "$BAM" _Aligned.sortedByCoord.out.bam)
     echo "Processing sample: $SAMPLE ..."
 
     # Detect if paired-end or single-end
