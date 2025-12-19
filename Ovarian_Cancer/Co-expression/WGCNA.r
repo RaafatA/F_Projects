@@ -51,6 +51,31 @@ rownames(traitData) <- rownames(datExpr)
 all(rownames(traitData) == rownames(datExpr))
 
 
+
+# Extract sample names
+sampleNames <- rownames(co_exp_df)
+
+# Create binary disease status
+traitData <- data.frame(
+  Condition = ifelse(
+    grepl("^TCGA", sampleNames),  
+    1,                            
+    0                             
+  )
+)
+
+rownames(traitData) <- sampleNames
+
+# Inspect
+table(traitData$Condition)
+
+
+
+
+
+
+
+
 ################################################################################  WGCNA  ##################################################################
 # Calculate network topology for various soft-thresholding powers
 powers <- c(seq(1,10,1), seq(12,20,2))
