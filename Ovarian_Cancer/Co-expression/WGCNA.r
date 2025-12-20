@@ -11,6 +11,29 @@ enableWGCNAThreads()
 
 ## Expression Data used is not raw count data, but normalized ##
 # expr <- read.csv("normalized_expression.csv", row.names = 1, check.names = FALSE)
+
+coldata <- data.frame(
+  sample_id = colnames(final_xena_identifier_matched)
+)
+
+coldata$condition <- ifelse(
+  grepl("^TCGA", coldata$sample_id),
+  "tumor",
+  ifelse(
+    grepl("^GTEX|^GTEx|^gtex", coldata$sample_id),
+    "normal",
+    NA
+  )
+)
+
+rownames(coldata) <- coldata$sample_id
+
+coldata$condition <- factor(
+  coldata$condition,
+  levels = c("normal", "tumor")
+)
+
+
 # dds <- DESeqDataSetFromMatrix(
 #  countData = counts,
 #  colData = colData,
